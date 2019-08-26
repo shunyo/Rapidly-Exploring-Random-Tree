@@ -38,7 +38,7 @@ def main():
     pygame.draw.circle(screen, red, starting_node.astype(np.int32), int(node_radius))
 
     # call the RRT class using rrt_obj object
-    rrt_obj = RapidlyExploringRandomTree(starting_node, NUMNODES, EPSILON, (XDIM, YDIM))
+    rrt_obj = RapidlyExploringRandomTree(starting_node, EPSILON, (XDIM, YDIM), NUMNODES)
 
     # build rrt using algorithm
     rrt_obj.build_rrt()

@@ -32,7 +32,7 @@ class RapidlyExploringRandomTree:
         :param epsilon_dist: distance to create a new node
         :param threshold: limits of the state space
     """
-    def __init__(self, starting_node, num_nodes, epsilon_dist, threshold):
+    def __init__(self, starting_node, epsilon_dist, threshold, num_nodes=None):
         self.nodes = [starting_node]
         self.edges = []
         self.state_dim = starting_node.shape[0]
@@ -45,12 +45,16 @@ class RapidlyExploringRandomTree:
         Build a complete RRT
         :return: None
         """
-        for k in range(self.num_nodes):
-            node_new, ind_near = self.build_rrt_single_node()
-            # get the node index and save to the edge
-            ind_new = len(self.nodes)
-            self.nodes.append(node_new)
-            self.edges.append([ind_near, ind_new])
+        if self.num_nodes is not None:
+            for k in range(self.num_nodes):
+                node_new, ind_near = self.build_rrt_single_node()
+                # get the node index and save to the edge
+                ind_new = len(self.nodes)
+                self.nodes.append(node_new)
+                self.edges.append([ind_near, ind_new])
+        else:
+            print("Num nodes should not be none")
+            exit(-1)
 
     def build_rrt_single_node(self):
         """
