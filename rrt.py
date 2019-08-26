@@ -42,23 +42,31 @@ class RapidlyExploringRandomTree:
 
     def build_rrt(self):
         """
-        Build a RRT
+        Build a complete RRT
         :return: None
         """
         for k in range(self.num_nodes):
-            # get nearest node
-            # simple collision check:
-            # if dist is lesser than epsilon dist, get new random node
-            dist_near = 0
-            while dist_near <= self.epsilon_dist:
-                node_rand = self.rand_free_conf()
-                node_near, ind_near, dist_near = self.nearest_vertex(node_rand)
-            # create a new node at the specified distance in the direction of the random node
-            node_new = self.new_conf(node_near, node_rand, dist_near)
+            node_new, ind_near = self.build_rrt_single_node()
             # get the node index and save to the edge
             ind_new = len(self.nodes)
             self.nodes.append(node_new)
             self.edges.append([ind_near, ind_new])
+
+    def build_rrt_single_node(self):
+        """
+        Args:
+        :return: new node and index of the nearest node
+        """
+        # get nearest node
+        # simple collision check:
+        # if dist is lesser than epsilon dist, get new random node
+        dist_near = 0
+        while dist_near <= self.epsilon_dist:
+            node_rand = self.rand_free_conf()
+            node_near, ind_near, dist_near = self.nearest_vertex(node_rand)
+        # create a new node at the specified distance in the direction of the random node
+        node_new = self.new_conf(node_near, node_rand, dist_near)
+        return node_new, ind_near
 
     def rand_free_conf(self):
         """
