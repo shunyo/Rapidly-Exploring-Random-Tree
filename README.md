@@ -18,4 +18,4 @@ Install pygame
 pip3 install pygame
 ```
 ## Acknowledgements
-I have used the example from Steve LaValle, who gave the RRT algorithm
+I have used a similar example as given by Steve LaValle, who gave the original RRT algorithm
