@@ -5,6 +5,8 @@ The algorithm is as follows:
 * Find a random node which is collision free
 * Get the nearest vertex
 * Calculate an interpolated node at a fixed distance
+
+
 ![](images/RRT.png)
 
 ## Getting started 
