@@ -63,7 +63,7 @@ class RapidlyExploringRandomTree:
     def rand_free_conf(self):
         """
             get a new random node using the uniform distribution between [0,1] and scaling to the threshold
-        :return: None
+        :return: Created node
         """
         node = np.multiply(np.random.uniform(0, 1, self.state_dim), self.threshold)
         return node
