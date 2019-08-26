@@ -7,7 +7,7 @@ The algorithm is as follows:
 * Calculate an interpolated node at a fixed distance
 
 
-![](images/RRT.png)
+![](images/rrt.gif)
 
 ## Getting started 
 Download the repo and run rrt_example.py
