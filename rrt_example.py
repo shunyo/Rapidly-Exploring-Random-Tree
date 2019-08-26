@@ -1,4 +1,5 @@
 # Generates a simple rapidly exploring random tree in a 2D region
+# Coded by Arpan Kusari
 # adapted from Steve LaValle
 
 import sys, random, math, pygame
@@ -15,20 +16,8 @@ EPSILON = 20.0
 NUMNODES = 500
 
 
-def dist(p1,p2):
-    return sqrt((p1[0]-p2[0])*(p1[0]-p2[0])+(p1[1]-p2[1])*(p1[1]-p2[1]))
-
-
-def step_from_to(p1,p2):
-    if dist(p1,p2) < EPSILON:
-        return p2
-    else:
-        theta = atan2(p2[1]-p1[1],p2[0]-p1[0])
-        return p1[0] + EPSILON*cos(theta), p1[1] + EPSILON*sin(theta)
-
-
 def main():
-    #initialize and prepare screen
+    # initialize and prepare screen
     pygame.init()
     screen = pygame.display.set_mode(WINSIZE)
     pygame.display.set_caption('RRT      A. Kusari    ')
