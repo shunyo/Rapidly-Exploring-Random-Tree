@@ -1,5 +1,6 @@
 # Rapidly-Exploring-Random-Tree
 Simple demo of RRT using pygame interface - Adapted from Steve LaValle's code
+
 The algorithm is as follows:
 * Find a random node which is collision free
 * Get the nearest vertex
