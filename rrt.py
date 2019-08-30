@@ -40,6 +40,29 @@ class RapidlyExploringRandomTree:
         self.epsilon_dist = epsilon_dist
         self.threshold = threshold
 
+    def get_current_node_index(self):
+        """
+        Get index where the current node will be inserted
+        :return: len of the node list
+        """
+        return len(self.nodes)
+
+    def add_node(self, node):
+        """
+        Add the new node to the current list of nodes
+        :param node: new node
+        :return: None
+        """
+        self.nodes.append(node)
+
+    def add_edge(self, edge):
+        """
+        Add new edge to current list of edges
+        :param edge: new edge
+        :return: None
+        """
+        self.edges.append(edge)
+
     def build_rrt(self):
         """
         Build a complete RRT
@@ -49,9 +72,9 @@ class RapidlyExploringRandomTree:
             for k in range(self.num_nodes):
                 node_new, ind_near = self.build_rrt_single_node()
                 # get the node index and save to the edge
-                ind_new = len(self.nodes)
-                self.nodes.append(node_new)
-                self.edges.append([ind_near, ind_new])
+                ind_new = self.get_current_node_index()
+                self.add_node(node_new)
+                self.add_edge([ind_near, ind_new])
         else:
             print("Num nodes should not be none")
             exit(-1)
@@ -77,7 +100,8 @@ class RapidlyExploringRandomTree:
             get a new random node using the uniform distribution between [0,1] and scaling to the threshold
         :return: Created node
         """
-        node = np.multiply(np.random.uniform(0, 1, self.state_dim), self.threshold)
+        uniform_val = np.random.uniform(0, 1, self.state_dim)
+        node = self.threshold[:, 0]*(1-uniform_val) + self.threshold[:, 1]*uniform_val
         return node
 
     def nearest_vertex(self, node_given):
